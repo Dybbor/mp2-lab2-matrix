@@ -225,7 +225,15 @@ public:
 template <class ValType>
 TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 {
-} /*-------------------------------------------------------------------------*/
+	if (s<1 || s>MAX_MATRIX_SIZE)
+		throw s;
+	Size = s;
+	for (int i = 0; i < Size; i++) 
+	{
+		TVector <ValType> newVector(Size - i, i);
+		pVector[i] = newVector;
+	}
+} 
 
 template <class ValType> // конструктор копирования
 TMatrix<ValType>::TMatrix(const TMatrix<ValType> &mt):
@@ -238,27 +246,59 @@ TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 {
-} /*-------------------------------------------------------------------------*/
+	if (Size > MAX_MATRIX)
+		throw Size;
+	for (int i = 0; i < Size; i++)
+	{
+		if (pVector[i] != mt.pVector[i])
+			return false;
+	}
+	return true;
+} 
 
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 {
-} /*-------------------------------------------------------------------------*/
+	return (!(*this == mt));
+} 
 
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
-} /*-------------------------------------------------------------------------*/
+	if (Size > MAX_MATRIX_SIZE)
+		throw Size;
+	if (Size != mt.Size) 
+	{
+		delete[] pVector;
+		Size = mt.Size;
+		pVector = new TVector <ValType> [mt.Size];
+	}
+	for (int i = 0; i < Size; i++)
+		pVector[i] = mt.pVector[i];
+	return *this;
+} 
 
 template <class ValType> // сложение
 TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 {
-} /*-------------------------------------------------------------------------*/
+	if (Size > MAX_MATRIX_SIZE)
+		throw Size;
+	TMatrix <ValType> res(Size);
+	for (int i = 0; i < Size; i++)
+		res.pVector[i] = pVector[i] + mt.pVector[i];
+	return res;
+} 
 
 template <class ValType> // вычитание
 TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
-} /*-------------------------------------------------------------------------*/
+	if (Size > MAX_MATRIX)
+		throw Size;
+	TMatrix <ValType> res(Size);
+	for (int i = 0; i < Size; i++)
+		res.pVector[i] = pVector[i] - mt.pVector[i];
+	return res;
+} 
 
 // TVector О3 Л2 П4 С6
 // TMatrix О2 Л2 П3 С3
