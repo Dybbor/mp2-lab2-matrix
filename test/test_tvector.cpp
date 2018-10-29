@@ -42,7 +42,7 @@ TEST(TVector, copied_vector_is_equal_to_source_one) //Скопированный вектор равен
 
 TEST(TVector, copied_vector_has_its_own_memory) //Скопированный вектор имеет собственную память
 {
-	
+	ADD_FAILURE();
 }
 
 TEST(TVector, can_get_size)
