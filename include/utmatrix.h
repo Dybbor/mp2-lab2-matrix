@@ -87,6 +87,8 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
+	if (pos<0 || pos >Size)
+		throw "Wrong size";
 	return pVector[pos];
 }
 

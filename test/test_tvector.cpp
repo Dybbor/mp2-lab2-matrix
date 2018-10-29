@@ -29,14 +29,20 @@ TEST(TVector, can_create_copied_vector)
   ASSERT_NO_THROW(TVector<int> v1(v));
 }
 
-TEST(TVector, copied_vector_is_equal_to_source_one)
+TEST(TVector, copied_vector_is_equal_to_source_one) //—копированный вектор равен исходному
 {
-  ADD_FAILURE();
+	const int size = 3;
+	TVector <int> Vector1(size);
+	for (int i = 0; i <size; i++)
+		Vector1[i] = i;
+	TVector <int >Vector2(Vector1);
+	EXPECT_EQ(1,(Vector1==(Vector2)));
+	//ADD_FAILURE();
 }
 
-TEST(TVector, copied_vector_has_its_own_memory)
+TEST(TVector, copied_vector_has_its_own_memory) //—копированный вектор имеет собственную пам€ть
 {
-  ADD_FAILURE();
+	
 }
 
 TEST(TVector, can_get_size)
@@ -63,12 +69,16 @@ TEST(TVector, can_set_and_get_element)
 
 TEST(TVector, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+	TVector <int> vector(5);
+	ASSERT_ANY_THROW(vector [-2]);
+ // ADD_FAILURE();
 }
 
 TEST(TVector, throws_when_set_element_with_too_large_index)
 {
-  ADD_FAILURE();
+	TVector <int> vector(5);
+	ASSERT_ANY_THROW(vector[10]);
+  //ADD_FAILURE();
 }
 
 TEST(TVector, can_assign_vector_to_itself)
@@ -93,17 +103,32 @@ TEST(TVector, can_assign_vectors_of_different_size)
 
 TEST(TVector, compare_equal_vectors_return_true)
 {
-  ADD_FAILURE();
+	const int size = 5;
+	TVector <int> Vector1(size), Vector2(size);
+	for (int i = 0; i < size; i++)
+	{
+		Vector1[i] = i;
+		Vector2[i] = i;
+	}
+	EXPECT_EQ(1, Vector1 == Vector2);
+  //ADD_FAILURE();
 }
 
 TEST(TVector, compare_vector_with_itself_return_true)
 {
-  ADD_FAILURE();
+	const int size = 5;
+	TVector <int> Vector1(size);
+	for (int i = 0; i < size; i++)
+		Vector1[i] = i;
+	EXPECT_EQ(1, Vector1 == Vector1);
+  //ADD_FAILURE();
 }
 
 TEST(TVector, vectors_with_different_size_are_not_equal)
 {
-  ADD_FAILURE();
+	TVector <int> Vector1(3), Vector2(5);
+	EXPECT_EQ(1, Vector1 != Vector2);
+  //ADD_FAILURE();
 }
 
 TEST(TVector, can_add_scalar_to_vector)
