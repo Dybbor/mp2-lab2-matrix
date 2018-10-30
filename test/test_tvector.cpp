@@ -25,19 +25,16 @@ TEST(TVector, throws_when_create_vector_with_negative_startindex)
 TEST(TVector, can_create_copied_vector)
 {
   TVector<int> v(10);
-
   ASSERT_NO_THROW(TVector<int> v1(v));
 }
 
 TEST(TVector, copied_vector_is_equal_to_source_one) //—копированный вектор равен исходному
 {
-	const int size = 3;
-	TVector <int> Vector1(size);
-	for (int i = 0; i <size; i++)
+	TVector <int> Vector1(3), Vector2(3);
+	for (int i = 0; i <3; i++)
 		Vector1[i] = i;
-	TVector <int >Vector2(Vector1);
-	EXPECT_EQ(1,(Vector1==(Vector2)));
-	//ADD_FAILURE();
+	Vector2 = Vector1;
+	EXPECT_EQ(Vector1,Vector2);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory) //—копированный вектор имеет собственную пам€ть
@@ -71,14 +68,12 @@ TEST(TVector, throws_when_set_element_with_negative_index)
 {
 	TVector <int> vector(5);
 	ASSERT_ANY_THROW(vector [-2]);
- // ADD_FAILURE();
 }
 
 TEST(TVector, throws_when_set_element_with_too_large_index)
 {
 	TVector <int> vector(5);
 	ASSERT_ANY_THROW(vector[10]);
-  //ADD_FAILURE();
 }
 
 TEST(TVector, can_assign_vector_to_itself)
