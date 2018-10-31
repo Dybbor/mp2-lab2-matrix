@@ -250,7 +250,7 @@ TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 {
-	if (Size > MAX_MATRIX)
+	if (Size > MAX_MATRIX_SIZE)
 		throw Size;
 	for (int i = 0; i < Size; i++)
 	{
