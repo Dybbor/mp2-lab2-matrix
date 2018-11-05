@@ -36,16 +36,13 @@ TEST(TVector, copied_vector_is_equal_to_source_one) //Скопированный вектор равен
 	TVector <int >Vector2(Vector1);
 	EXPECT_EQ(Vector1, Vector2);
 }
-////////////////////////////////////////////////
-///////////////ПОСМОТРИ_В_КЛАССЕ////////////////
-////////////////////////////////////////////////
+
 TEST(TVector, copied_vector_has_its_own_memory) //Скопированный вектор имеет собственную память
 {
-	TVector <int> Vector1(3), Vector2(5);
-	for (int i = 0; i <3; i++)
-		Vector1[i] = i;
-	Vector2 = Vector1;
-	EXPECT_EQ(Vector1, Vector2);
+	TVector <int> Vector1(5);
+	TVector <int> Vector2(Vector1);
+	EXPECT_EQ(5, Vector2.GetSize());
+
 }
 
 TEST(TVector, can_get_size)
