@@ -118,15 +118,18 @@ bool TVector<ValType>::operator!=(const TVector &v) const
 template <class ValType> // присваивание
 TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 {
-	if (Size != v.Size)
+	if (*this != v)
 	{
-		delete[] pVector;
-		pVector = new ValType[v.Size];
+		if (Size != v.Size)
+		{
+			delete[] pVector;
+			pVector = new ValType[v.Size];
+		}
+		Size = v.Size;
+		StartIndex = v.StartIndex;
+		for (int i = 0; i < Size; i++)
+			pVector[i] = v.pVector[i];
 	}
-	Size = v.Size;
-	StartIndex = v.StartIndex;
-	for (int i = 0; i < Size; i++)
-		pVector[i] = v.pVector[i];
 	return *this;
 }
 
