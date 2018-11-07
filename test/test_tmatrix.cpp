@@ -146,8 +146,8 @@ TEST(TMatrix, matrices_with_different_size_are_not_equal)
 TEST(TMatrix, can_add_matrices_with_equal_size) ///Не прошел
 {
 	TMatrix <int> m1(3), m2(3),m3(3);
-	for (int i = 0; i<2; i++)
-		for (int j = i; j < 2; j++)
+	for (int i = 0; i<3; i++)
+		for (int j = i; j < 3; j++)
 		{
 			m1[i][j] = 1;
 			m2[i][j] = 3;

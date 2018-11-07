@@ -167,9 +167,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 	if (Size != v.Size)
 		throw (5);
 	for (int i = 0; i < Size; i++)
-	{
 		result.pVector[i] = pVector[i] + v.pVector[i];
-	}
 	return result;
 }
 
