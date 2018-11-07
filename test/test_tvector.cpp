@@ -39,9 +39,10 @@ TEST(TVector, copied_vector_is_equal_to_source_one) //Скопированный вектор равен
 
 TEST(TVector, copied_vector_has_its_own_memory) //Скопированный вектор имеет собственную память
 {
-	TVector <int> Vector1(5);
+	/*TVector <int> Vector1(5);
 	TVector <int> Vector2(Vector1);
-	EXPECT_EQ(5, Vector2.GetSize());
+	EXPECT_EQ(5, Vector2.GetSize());*/
+	ADD_FAILURE();
 
 }
 
