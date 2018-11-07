@@ -163,18 +163,20 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-	TVector <ValType> result(Size);
+	TVector <ValType> result(Size,StartIndex);
 	if (Size != v.Size)
 		throw (5);
 	for (int i = 0; i < Size; i++)
+	{
 		result.pVector[i] = pVector[i] + v.pVector[i];
+	}
 	return result;
 }
 
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-	TVector <ValType> result(Size);
+	TVector <ValType> result(Size,StartIndex);
 	if (Size != v.Size)
 		throw (5);
 	for (int i = 0; i < Size; i++)

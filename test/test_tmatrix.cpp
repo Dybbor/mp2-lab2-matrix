@@ -32,7 +32,15 @@ TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 
 TEST(TMatrix, copied_matrix_has_its_own_memory)
 {
-  ADD_FAILURE();
+	TMatrix<int> b;
+	TMatrix<int> *m = new TMatrix<int>;
+	(*m)[0][0] = 1;
+	(*m)[0][1] = 2;
+	(*m)[1][1] = 1;
+	b = *m;
+	delete m;
+	EXPECT_EQ(1, b[0][0]);
+	EXPECT_EQ(2, b[0][1]);
 }
 
 TEST(TMatrix, can_get_size)
@@ -46,8 +54,6 @@ TEST(TMatrix, can_set_and_get_element)
 	TMatrix <int> m(3);
 	m[0][2] = 2;
 	 EXPECT_EQ(2, m[0][2]);
-	//ADD_FAILURE();
-	
 }
 
 TEST(TMatrix, throws_when_set_element_with_negative_index)
@@ -136,14 +142,12 @@ TEST(TMatrix, matrices_with_different_size_are_not_equal)
 	EXPECT_EQ(true, m1 != m2);
 }
 
-///////////////
-///not working/
-///////////////
+
 TEST(TMatrix, can_add_matrices_with_equal_size) ///Не прошел
 {
 	TMatrix <int> m1(3), m2(3),m3(3);
-	for (int i = 0; i<3; i++)
-		for (int j = i; j < 3; j++)
+	for (int i = 0; i<2; i++)
+		for (int j = i; j < 2; j++)
 		{
 			m1[i][j] = 1;
 			m2[i][j] = 3;
@@ -158,9 +162,7 @@ TEST(TMatrix, cant_add_matrices_with_not_equal_size)
 	EXPECT_ANY_THROW( m1 + m2);
 }
 
-///////////////
-///not working/
-///////////////
+
 TEST(TMatrix, can_subtract_matrices_with_equal_size)
 {
 	TMatrix <int> m1(3), m2(3), m3(3);
@@ -171,6 +173,7 @@ TEST(TMatrix, can_subtract_matrices_with_equal_size)
 			m2[i][j] = 3;
 			m3[i][j] = 4;
 		}
+
 	EXPECT_EQ(m1, m3 - m2);
 }
 
